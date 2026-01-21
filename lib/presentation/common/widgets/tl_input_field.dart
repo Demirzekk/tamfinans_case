@@ -26,6 +26,9 @@ class TlInputField extends StatelessWidget {
         builder: (context, value, child) {
           return TextField(
             controller: controller,
+            onTapOutside: (event) {
+              FocusScope.of(context).unfocus();
+            },
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp(r'[\d.,]')),

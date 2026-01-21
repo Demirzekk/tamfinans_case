@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           body: _controller.isSecurityOverlayVisible
-              ? SecurityOverlayWidget(isDark: isDark)
+              ? const SecurityOverlayWidget()
               : _buildCurrencyScreen(_controller.currentType),
         );
       },

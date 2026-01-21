@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tamfinans_case/app/di/injection.dart';
 import 'package:tamfinans_case/core/extension/state_management_type.dart';
+import 'package:tamfinans_case/core/theme/app_colors_extension.dart';
 
 import 'package:tamfinans_case/presentation/settings/_widget/section_header_widget.dart';
 
@@ -50,9 +51,12 @@ class _StateManagementSelectorWidgetState
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final appColors = theme.extension<AppColorsExtension>()!;
 
     final cardColor = theme.scaffoldBackgroundColor;
     final secondaryColor = theme.colorScheme.onSurface;
+    final surfaceSelected =
+        appColors.iconBackground ?? theme.colorScheme.surfaceContainerHighest;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -77,7 +81,7 @@ class _StateManagementSelectorWidgetState
                       padding: const EdgeInsets.symmetric(vertical: 6),
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? theme.colorScheme.surfaceContainerHighest
+                            ? surfaceSelected
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
                       ),

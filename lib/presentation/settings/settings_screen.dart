@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tamfinans_case/core/extension/state_management_type.dart';
 import 'package:tamfinans_case/presentation/settings/_widget/setting_item_widget.dart';
 import 'package:tamfinans_case/core/constants/app_strings.dart';
+import 'package:tamfinans_case/core/theme/app_colors_extension.dart';
 
 import 'package:tamfinans_case/presentation/settings/_widget/state_management_selector_widget.dart';
 import 'package:tamfinans_case/presentation/settings/_widget/theme_select_widget.dart';
@@ -43,8 +44,8 @@ class _SettingsContentState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
+    final appColors = Theme.of(context).extension<AppColorsExtension>()!;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
@@ -56,7 +57,9 @@ class _SettingsContentState extends State<SettingsScreen> {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(1),
           child: Divider(
-            color: theme.colorScheme.surfaceContainerHighest,
+            color:
+                appColors.divider ??
+                Theme.of(context).colorScheme.surfaceContainerHighest,
             thickness: 1.5,
           ),
         ),

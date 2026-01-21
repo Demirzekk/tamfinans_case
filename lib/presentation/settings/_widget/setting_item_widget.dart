@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tamfinans_case/core/theme/app_colors_extension.dart';
 
 import 'package:tamfinans_case/presentation/common/widgets/icon_widget.dart'
     show AppIconWidget;
@@ -18,18 +19,19 @@ class SettingItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    final appColors = theme.extension<AppColorsExtension>()!;
+
     final cardColor = theme.cardTheme.color;
     final textColor = theme.colorScheme.onSurface;
+    final borderColor =
+        appColors.iconBackground ?? theme.colorScheme.surfaceContainerHighest;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: cardColor,
         border: Border.symmetric(
-          horizontal: BorderSide(
-            color: theme.colorScheme.surfaceContainerHighest,
-            width: 0.5,
-          ),
+          horizontal: BorderSide(color: borderColor, width: 0.5),
         ),
       ),
       child: Row(

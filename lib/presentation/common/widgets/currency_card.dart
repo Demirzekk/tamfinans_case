@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tamfinans_case/core/constants/app_strings.dart';
 import 'package:tamfinans_case/presentation/common/widgets/amount_badge.dart';
+import 'package:tamfinans_case/core/theme/app_colors_extension.dart';
 import '../../../domain/entities/currency.dart';
 
 class CurrencyCard extends StatefulWidget {
@@ -70,9 +71,12 @@ class _CurrencyCardState extends State<CurrencyCard>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final surfaceColor = theme.colorScheme.surfaceContainerHighest;
+    final appColors = theme.extension<AppColorsExtension>()!;
+
+    final surfaceColor =
+        appColors.iconBackground ?? theme.colorScheme.surfaceContainerHighest;
     final textPrimary = theme.colorScheme.onSurface;
-    final textSecondary = theme.hintColor;
+    final textSecondary = appColors.textSecondary ?? theme.hintColor;
     final primaryColor = theme.colorScheme.primary;
 
     final convertedAmount = widget.tlAmount != null && widget.tlAmount! > 0

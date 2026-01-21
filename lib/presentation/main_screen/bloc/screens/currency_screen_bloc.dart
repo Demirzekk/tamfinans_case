@@ -41,8 +41,8 @@ class _CurrencyScreenBlocState extends State<CurrencyScreenBloc> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: _bloc,
+    return BlocProvider(
+      create: (_) => _bloc,
       child: BlocBuilder<CurrencyBloc, CurrencyState>(
         builder: (context, state) {
           return _buildContent(context, state);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tamfinans_case/core/constants/app_strings.dart';
+import 'package:tamfinans_case/core/theme/app_colors_extension.dart';
 
 class RatesHeader extends StatefulWidget {
   const RatesHeader({
@@ -47,8 +48,9 @@ class _RatesHeaderState extends State<RatesHeader> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final textSecondary = theme.hintColor;
-    final surfaceColor = theme.colorScheme.surfaceContainerLowest;
+    final appColors = theme.extension<AppColorsExtension>()!;
+    final textSecondary = appColors.textSecondary ?? theme.hintColor;
+    final surfaceColor = appColors.surfaceContainerLowest ?? theme.cardColor;
 
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16),
@@ -63,6 +65,9 @@ class _RatesHeaderState extends State<RatesHeader> {
                     ? TextField(
                         controller: _searchController,
                         autofocus: true,
+                        onTapOutside: (event) {
+                          FocusScope.of(context).unfocus();
+                        },
                         style: theme.textTheme.bodyMedium,
                         decoration: InputDecoration(
                           hintText: AppStrings.searchHint,

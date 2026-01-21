@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/app_colors.dart';
+import 'app_colors_extension.dart';
 
 enum ThemeType { light, dark }
 
@@ -48,6 +49,21 @@ class AppTheme {
           borderSide: BorderSide.none,
         ),
       ),
+      extensions: const <ThemeExtension<dynamic>>[
+        AppColorsExtension(
+          surfaceContainerLowest: AppColors.surfaceContainerLowest,
+          iconBackground: AppColors.iconBackground,
+          surfaceBackground: AppColors.surfaceBackground,
+          selectedDateBg: AppColors.selectedDateBg,
+          unselectedDateBg: AppColors.unselectedDateBg,
+          textSecondary: AppColors.textSecondary,
+          textHint: AppColors.textHint,
+          success: AppColors.success,
+          warning: AppColors.warning,
+          divider: AppColors.divider,
+          securityOverlayBackground: Color(0xFF0d0d0f),
+        ),
+      ],
     );
   }
 
@@ -88,6 +104,21 @@ class AppTheme {
           borderSide: BorderSide.none,
         ),
       ),
+      extensions: <ThemeExtension<dynamic>>[
+        AppColorsExtension(
+          surfaceContainerLowest: Colors.white,
+          iconBackground: Colors.grey[200],
+          surfaceBackground: Colors.white,
+          selectedDateBg: AppColors.primary,
+          unselectedDateBg: Colors.grey[300],
+          textSecondary: Colors.grey[600],
+          textHint: Colors.grey[400],
+          success: AppColors.success,
+          warning: AppColors.warning,
+          divider: Colors.grey[300],
+          securityOverlayBackground: Colors.grey[100],
+        ),
+      ],
     );
   }
 }

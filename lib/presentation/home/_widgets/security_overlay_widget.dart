@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:tamfinans_case/core/theme/app_colors_extension.dart';
 
 class SecurityOverlayWidget extends StatelessWidget {
-  const SecurityOverlayWidget({super.key, required this.isDark});
-
-  final bool isDark;
+  const SecurityOverlayWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bgColor = isDark ? const Color(0xFF0D0D0F) : Colors.grey[100]!;
-    final textPrimary = isDark ? Colors.white : Colors.grey[900]!;
-    final textSecondary = isDark ? Colors.grey[400]! : Colors.grey[600]!;
+    final theme = Theme.of(context);
+    final appColors = theme.extension<AppColorsExtension>()!;
+
+    final bgColor = appColors.securityOverlayBackground!;
+    final textPrimary = theme.colorScheme.onSurface;
+    final textSecondary = appColors.textSecondary ?? theme.hintColor;
 
     return Container(
       color: bgColor.withValues(alpha: 0.98),

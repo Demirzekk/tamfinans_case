@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:tamfinans_case/core/constants/app_strings.dart';
+import 'package:tamfinans_case/core/theme/app_colors_extension.dart';
 import 'package:tamfinans_case/core/constants/app_icons_constant.dart';
 import 'package:tamfinans_case/presentation/common/widgets/custom_svg_widget.dart';
 
@@ -31,10 +32,13 @@ class DatePickerRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final appColors = theme.extension<AppColorsExtension>()!;
     final textPrimary = theme.colorScheme.onSurface;
-    final textSecondary = theme.colorScheme.onSurface;
-    final surfaceColor = theme.colorScheme.surfaceContainerHighest;
-    final disabledColor = theme.hintColor;
+    final textSecondary =
+        appColors.textSecondary ?? theme.colorScheme.onSurface;
+    final surfaceColor =
+        appColors.iconBackground ?? theme.colorScheme.surfaceContainerHighest;
+    final disabledColor = appColors.textHint ?? theme.hintColor;
     final primaryColor = theme.colorScheme.primary;
 
     final dates = List.generate(10, (index) {
